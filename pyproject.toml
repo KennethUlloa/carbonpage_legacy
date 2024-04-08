@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "carbonpage"
+version = "0.1.0"
+description = "CLI tool for creating file/folder structures using templates."
+authors = ["Kenneth Ulloa <ulloakenth@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+click = "^8.1.7"
+Jinja2 = "^3.1.3"
+
+
+[tool.poetry.scripts]
+carbonpage = "carbonpage.main:run"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

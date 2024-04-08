@@ -1,0 +1,15 @@
+{
+    "templates_dir": "templates",
+    "output_dir": "output",
+    "context": {
+        "a_variable": "a_value"
+    },
+    "alias": {
+        "example": {
+            "template_dir": "example",
+            "output_dir": "output",
+            "context": "key1:value1,key2:value2",
+            "dir": false
+        }
+    }
+}
