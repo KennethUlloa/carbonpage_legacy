@@ -1,0 +1,1 @@
+{% macro capitalize(text) %}{% if text %}{{ text[0].upper() + text[1:] }}{% else %}{{ text }}{% endif %}{% endmacro %}

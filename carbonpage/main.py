@@ -63,11 +63,13 @@ def commands():
 
 def generate_from_dir(template_dir: str, output_dir: str, context: str="", dir: bool=False, config: str=default_config):
     config = json.load(open(config))
+    template_root = config["templates_dir"] if "templates_dir" in config else ""
     config = load_config(template_dir, output_dir, context, dir, config)
-    template_dir = config["template_dir"]
+    #template_dir = config["template_dir"]
     output_dir = config["output_dir"]
     context = config["context"]
-    generator = TemplateGenerator()
+    
+    generator = TemplateGenerator(template_root)
     click.echo(f"Generating from {accent}{template_dir}{reset} to {accent}{output_dir}{reset}")
     generator.create(template_dir, output_dir, context)
     click.echo(f"Directory {accent}{template_dir}{reset} generated successfully!")
@@ -85,15 +87,16 @@ def generate_from_alias(alias: str, context: str="", dir: bool=False, config: st
     if alias not in config["alias"]:
         click.echo(f"Alias {accent}{alias}{reset} not found")
         return
-     
+    template_root = config["templates_dir"] if "templates_dir" in config else ""
     alias_data = config["alias"][alias]
     context = context if "context" not in alias_data else alias_data["context"]
     dir = dir if "dir" not in alias_data else alias_data["dir"]
     config = load_config(alias_data["template_dir"], alias_data["output_dir"], context, dir, config)
-    template_dir = config["template_dir"]
+    template_dir = alias_data["template_dir"]
     output_dir = config["output_dir"]
+    print(output_dir)
     context = config["context"]
-    generator = TemplateGenerator()
+    generator = TemplateGenerator(template_root)
     click.echo(f"Generating from alias {accent}{alias}{reset}")
     generator.create(template_dir, output_dir, context)
     click.echo(f"Alias {accent}{alias}{reset} executed successfully!")

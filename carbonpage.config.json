@@ -1,14 +1,16 @@
 {
     "templates_dir": "templates",
-    "output_dir": "output",
+    "output_dir": "{{ project.name }}",
     "context": {
-        "a_variable": "a_value"
+        "project": {
+            "name": "example"
+        }
     },
     "alias": {
         "example": {
-            "template_dir": "example",
-            "output_dir": "output",
-            "context": "key1:value1,key2:value2",
+            "template_dir": "{{ project.name }}",
+            "output_dir": "{{ module }}",
+            "context": "module:name",
             "dir": false
         }
     }
